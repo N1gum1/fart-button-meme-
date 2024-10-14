@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão LED</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <button class="led-btn">Bostinha</button>
+        <div id="click-count" style="margin-top: 20px; color: white;">Você peidou: 0</div> <!-- Alterado para a nova frase -->
+    </div>
+    <audio id="peido-sound" src="peido.mp3" preload="auto"></audio>
+    <script>
+        const button = document.querySelector('.led-btn');
+        const sound = document.getElementById('peido-sound');
+        const clickCountDisplay = document.getElementById('click-count'); // Elemento para contagem
+        let clickCount = 0; // Inicializa a contagem de cliques
+
+        button.addEventListener('click', function() {
+            sound.play().catch(error => {
+                console.log("Erro ao tocar o som:", error);
+            });
+
+            clickCount++; // Incrementa a contagem
+            clickCountDisplay.textContent = `Você peidou: ${clickCount}`; // Atualiza o texto com a contagem
+
+            button.textContent = 'Clicado!';
+            setTimeout(() => {
+                button.textContent = 'Bostinha';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
+
+
+
+
